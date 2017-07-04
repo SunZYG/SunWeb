@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>我也不知道怎么搞得</title>
+<link rel="stylesheet" type="text/css" href="js/easyui.css">
+<script type="text/javascript" src="js/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<link href="jquery-easyui-1.5.1/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<!-- <link href="jquery-easyui-1.5.1/themes/icon.css" rel="stylesheet" type="text/css" /> -->
+<script src="jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<style type="text/css">
+body {
+		overflow-y: scroll;
+}
+
+html {
+	padding: 0px;
+	margin: 0px;
+	height: 0px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#Container {
+	width: 1000px;
+	min-width: 1000px;
+	height: auto;
+	min-height: 740px;
+	/*margin:0 auto;/*设置整个容器在浏览器中水平居中*/
+	/*     border:1px solid #00F; */
+	background-color: aliceblue;
+	position: absolute;
+	-moz-background-size:100% 100%;
+    background-size:100% 100%;
+	/* 	top:50%;      */
+	left: 50%;
+	margin-top: -8px;
+	margin-left: -500px;
+	/* 	overflow:hidden;  */
+}
+
+@media \0screen\,screen\9 { /* 只支持IE6、7、8 */
+	#Container {
+		background-color: #000000;
+		filter: Alpha(opacity = 20);
+		position: static;
+		/* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+		*zoom: 1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+	}
+}
+
+.sql_head {
+	height: 80px;
+	border: medium;
+	color: #CCCCCC;
+	background-color: #3E3D43;
+	background-image: url("img/back.jpg");
+	-moz-background-size:100% 100%;
+    background-size:100% 100%;
+}
+
+#logo {
+	padding-left: 50px;
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+
+.sql_context {
+	/*     height:100%; */
+	overflow:auto;
+	/*此处对容器设置了高度，一般不建议对容器设置高度，一般使用overflow:auto;属性设置容器根据内容自适应高度，如果不指定高度或不设置自适应高度，容器将默认为1个字符高度，容器下方的布局元素（footer）设置margin-top:属性将无效*/
+	/*     margin-top:20px;/*此处讲解margin的用法，设置content与上面header元素之间的距离*/ */
+	/*     border:1px solid #00F; */
+	background-color: rgba(0, 0, 0, 0.2);
+	/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
+	background-color: #F6F1E7;
+    text-align: center;
+    overflow:auto;
+}
+
+.con_recommend {
+	width: 998px;
+	height: 46px;
+	border: 1px solid #00F;
+	/* 	background-color: #4C4C4C; */
+	font-family: PingFangSC-Regular, HelveticaNeue-Light,
+		'Helvetica Neue Light', 'Microsoft YaHei', sans-serif;
+	text-align: left;
+	color: #262626;
+/* 	background: #3E3D43; */
+	background: white;
+	-webkit-font-smoothing: antialiased;
+	cursor: auto;
+}
+
+.con_recommend a {
+	font: 700 14px/44px PingFangSC-Regular, HelveticaNeue-Light,
+		'Helvetica Neue Light', 'Microsoft YaHei', sans-serif;
+	float: left;
+	margin-right: 20px;
+	transition: color .3s,background-color .3s;
+    text-decoration: none;
+    color: #262626;
+    outline: 0;
+}
+.con_recommend a:hover{
+    color: #ed4259;
+    border-bottom: 2px solid #ed4259;
+/*     background-color: #ed4259; */
+}
+
+
+
+
+.right_box {
+/* 	height: 400px; */
+	min-height:50px;
+	height:auto;
+	width: 800px;/*800*/
+	margin: 20px 100px; /*设置元素跟其他元素的距离为20像素*/
+	float: left; /*设置浮动，实现多列效果，div+Css布局中很重要的*/
+/* 	border: 1px solid #00F; */
+	
+}
+/*注：Content-Left和Content-Main元素是Content元素的子元素，两个元素使用了float:left;设置成两列，这个两个元素的宽度和这个两个元素设置的padding、margin的和一定不能大于父层Content元素的宽度，否则设置列将失败*/
+.sql_footer {
+	height: 38px;
+	width:1000px;
+	/*     border:1px solid #00F; */
+	text-align: center;
+	color: #CCCCCC;
+	background-color: #3E3D43;
+	position: fixed; /*or前面的是absolute就可以用*/  
+    bottom: 0px;
+}
+
+.Clear {
+	clear: both;
+}
+/*字体调整*/
+.big_title {
+	font-size: 35px;
+	height: 80px;
+	width: 500px;
+	margin: 0px auto;
+	line-height: 80px;
+	text-align: center;
+}
+
+.foot_font {
+	font-size: 12px;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+}
+
+body {
+	background: no-repeat;
+	background-image: url("img/Hearth_Stone.jpg");
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background-size: cover;
+}
+
+.div_log {
+	height: 80px;
+	width: 115px;
+	float: left;
+	background: no-repeat;
+	background-image: url("img/logo1.jpg");
+}
+
+.search_div {
+	height: 40px;
+	width: 400px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 80px;
+}
+
+#s-box {
+	font: 14px/38px PingFangSC-Regular, '-apple-system', Simsun;
+	width: 326px;
+	height: 38px;
+	padding: 0 11px;
+	border: none;
+	margin: 0;
+	outline: 0;
+	text-rendering: auto;
+	color: initial;
+	letter-spacing: normal;
+	word-spacing: normal;
+	text-transform: none;
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	text-align: start;
+	float: left;
+}
+
+#search-subimg {
+	float: left;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	cursor: pointer;
+	text-align: left;
+	color: #262626;
+	background: #fff;
+	-webkit-font-smoothing: antialiased;
+	display: block;
+}
+.lbf-pagination{
+	height:23px;
+	width:700px;
+	float:left;
+}
+.lbf-pagination-item-list{
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    font-family: PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif;
+    text-align: left;
+    color: #262626;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+}
+.lbf-pagination-jump{
+height:23px;
+width:99px;
+/* float:left; */
+}
+ul li{
+list-style: none outside none;
+}
+.lbf-pagination-item-list li{
+float: left;
+    margin: 0;
+    padding: 0;
+    display: block;
+    list-style-type: disc;
+    font: 14px/22px Arial;
+    float: left;
+    height: 22px;
+    padding: 0 7px;
+    transition: color .3s,border .3s;
+}
+
+.lbf-pagination-item-list li a{
+    color: #fff;
+    border: 1px solid #ed4259;
+/*     background: #ed4259; */
+	font: 14px/22px Arial;
+    float: left;
+    height: 22px;
+    padding: 0 7px;
+    transition: color .3s,border .3s;
+    border: 1px solid #fff;
+    text-decoration: none;
+    color: #262626;
+    outline: 0;
+}
+.lbf-pagination-go{
+    font: 12px/22px PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif;
+    display: inline-block;
+    width: 34px;
+    height: 22px;
+    transition: color .3s,border .3s;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #f2f2f2;
+    color: #262626;
+    float:left;
+}
+
+.lbf-pagination-input{
+	float:left;
+	width:30px;
+	-webkit-writing-mode: horizontal-tb;
+	text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    -webkit-font-smoothing: antialiased;
+}
+.page-box{
+  
+}
+.catalog_index{
+width:800px;
+min-height:200px;
+height:auto;
+border: 1px solid #00F;
+display:display;
+}
+#catalog_ul li{
+width:auto;
+height:auto;
+border: 1px solid #00F;
+}
+#catalog_ul li:hover{
+color:green;
+}
+.catalog_index{
+display:display;
+}
+.box_result_data{
+display:none;
+}
+.catalog_context{
+text-aligin:left;
+display:display;
+width:925px;
+min-height:200px;
+height:auto;
+}
+</style>
+</head>
+<body class="bg">
+<div id="Container" >
+		<div class="sql_head">
+<!-- 			<div class="div_log">  -->
+<!-- 			</div>  -->
+			<div class="big_title">
+				<div class="search_div">
+					<input class="search-box" id="s-box" name="kw" type="text"
+						placeholder="斗破苍穹" autocomplete="off"> 
+						<input id="search-subimg" type="image" src="/SunWeb/Manage/img/search.png" name="img">
+				</div>
+			</div>
+		</div>
+		<div class="sql_context" >
+			<div class="con_recommend">
+				<div class="box-center cf">
+					<a href="" data-eid="qd_F4">都市生活</a> 
+					<a href="" data-eid="qd_F5">爱情婚姻</a>  
+					<a href="" data-eid="qd_F6">异术超能</a> 
+					<a href="" data-eid="qd_F7">恩怨情仇</a> 
+					<a href="" data-eid="qd_F8">现实百态</a> 
+					<a href="" data-eid="qd_F9">青春校园</a> 
+					<a href="">都市排行</a>
+					<a href="">都市完本</a>
+					<a href="">hellow</a>
+					<a href="">are you gay?</a>
+				</div>
+			</div>
+			<div class="right_box">
+      <div class="box_sql_excult"></div>
+      <div class="box_result_data">
+      	欢迎使用 "我也不知道怎么搞得" 小说网站~
+      	先来张美女图片养养眼~
+      </div>
+      <div class="catalog_index">
+		<ul id="catalog_ul" class="catalog_index_ul"></ul>
+      </div>
+       <div id="catalog_context" class="catalog_context">
+      </div>
+<!-- 				<div class="page-box cf"> -->
+<!-- 					<div class="pagination fr" data-eid="qd_C44" id="page-container" -->
+<!-- 						data-pagemax="831" data-page="1"> -->
+<!-- 						<div class="lbf-pagination"> -->
+<!-- 							<ul class="lbf-pagination-item-list"> -->
+<!-- 								<li class="lbf-pagination-item"><a href="javascript:;" -->
+<!-- 									class="lbf-pagination-prev lbf-pagination-disabled">&lt;</a></li> -->
+<!-- 								<li class="lbf-pagination-item"><a data-page="1" -->
+<!-- 									href="javascript:;" -->
+<!-- 									class="lbf-pagination-page  lbf-pagination-current">1</a></li> -->
+<!-- 								<li class="lbf-pagination-item"><a data-page="2" -->
+<!-- 									href="javascript:;" class="lbf-pagination-page  ">2</a></li> -->
+<!-- 								<li class="lbf-pagination-item"><a data-page="3" -->
+<!-- 									href="javascript:;" class="lbf-pagination-page  ">3</a></li> -->
+<!-- 								<li class="lbf-pagination-item"><a data-page="4" -->
+<!-- 									href="javascript:;" class="lbf-pagination-page  ">4</a></li> -->
+<!-- 								<li class="lbf-pagination-item"><a data-page="5" -->
+<!-- 									href="javascript:;" class="lbf-pagination-page  ">5</a></li> -->
+<!-- 								<li class="lbf-pagination-item"><span -->
+<!-- 									class="lbf-pagination-ellipsis">...</span></li> -->
+<!-- 								<li class="lbf-pagination-item"><a data-page="831" -->
+<!-- 									href="javascript:;" class="lbf-pagination-page  ">831</a></li> -->
+<!-- 								<li class="lbf-pagination-item"><a href="javascript:;" -->
+<!-- 									class="lbf-pagination-next ">&gt;</a></li> -->
+<!-- 							</ul> -->
+<!-- 							<div class="lbf-pagination-jump"> -->
+<!-- 								<input type="text" class="lbf-pagination-input" value="1"><a -->
+<!-- 									href="javascript:;" class="lbf-pagination-go">GO</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+			</div>
+  </div>
+  <div class="sql_footer">
+    <span class="foot_font">Copyright © 2017-2018  zyg版权所有  我也不知道怎么搞得</span>
+  </div>
+</div>
+<script type="text/javascript">
+
+	window.onload = function() {
+		findDimensions();
+		//appendimg();
+
+	};
+	//计算中间容器高度
+	var winHeight = 0;
+	function findDimensions() //函数：获取尺寸
+	{
+		//获取窗口高度
+		if (window.innerHeight)
+			winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+			//通过深入Document内部对body进行检测，获取窗口大小
+			if (document.documentElement
+					&& document.documentElement.clientHeight
+					&& document.documentElement.clientWidth) {
+				winHeight = document.documentElement.clientHeight;
+			}
+// 		console.log(winHeight);
+		$(".sql_context").css("height", (winHeight - 118) + "px");
+		
+	}
+	
+	function appendimg()
+	{
+		var nums=Math.floor(Math.random()*3)+1;
+		var img=$("<img src="+"/SunWeb/Manage/img/"+nums+".jpg"+">");     // 通过 jQuery 创建新元素
+		$(".box_result_data").after(img);  
+	}
+	//搜索
+	$("#search-subimg").click(function(){
+		var val=$("#s-box").val();
+		if(emptyempty(val)){
+			val=$("#s-box").attr("placeholder");
+		}
+		var lists=null;
+	$.ajax({
+			type : "POST",
+			url : "/SunWeb/catalog/getDataByName",
+			async: false,
+			data : {
+				'name' : val
+			},
+			dataType : "json",
+			success : function(data) {
+			 	if(data.CODE==200){
+			 		lists=data.DATA;
+//  			 		alert(lists);
+			 	}else{
+			 		alert(data.MESSAGE);
+			 	}
+			},
+			error : function() {
+				console.log("网络连接出错！");
+			}
+		});
+		console.log(1);
+		if(lists!=null){
+			$(".box_result_data").attr("display","display");
+			$(".catalog_index").attr("display","none");
+			for(var i=0;i<lists.length;i++){
+// 				var li=$("<li><a href="+"catalog/getcontext/"+""+lists[i].id+" id="+lists[i].id+" >"+lists[i].indexName+"</a></li>");     // 通过 jQuery 创建新元素
+				var li=$("<li  uid="+lists[i].id+" > "+lists[i].indexName+"</li>");     // 通过 jQuery 创建新元素
+				$("#catalog_ul").prepend(li);  
+			}
+		}
+		
+
+	})
+	 $("#catalog_ul").delegate("li","click",function(e){
+			var v_id = $(e.target).attr('uid'); 
+// 			$(".catalog_index").attr("display","display");
+// 			$(".catalog_context").attr("display","none");
+			$(".catalog_index").hide();
+			$(".catalog_context").show();
+			var context=null;
+			$.ajax({
+				type : "POST",
+				url : "/SunWeb/catalog/getcontext",
+				async: false,
+				data : {
+					'id' : v_id
+				},
+				dataType : "json",
+				success : function(data) {
+				 	if(data.CODE==200){
+				 		context=data.DATA.content;
+				 	}else{
+				 		alert(data.MESSAGE);
+				 	}
+				},
+				error : function() {
+					console.log("网络连接出错！");
+				}
+			});
+			var con=$("<p> "+context+"</p>");     
+// 			$("#catalog_context").prepend(con); 
+			$("#catalog_context").append(con); 
+			
+     })
+	function emptyempty(mixed_var) {
+		var key;
+		if (mixed_var === "" || mixed_var === 0 || mixed_var === "0"
+				|| mixed_var === null || mixed_var === false
+				|| typeof mixed_var === 'undefined') {
+			return true;
+		}
+
+		if (typeof mixed_var == 'object') {
+			for (key in mixed_var) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+</script>
+</body>
+</html>

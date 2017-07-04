@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+			<classPathEntry  location="D:\myJava\javaJDK\jre\mysql-connector-java-5.0.5-bin.jar" />
+  <context id="context1">
+          <commentGenerator>  
+            <property name="suppressDate" value="true"/>  
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/sun" driverClass="com.mysql.jdbc.Driver" password="853664930" userId="root" />
+    <javaModelGenerator targetPackage="com.myBatis.bean" targetProject="SunWeb\src" />
+    <sqlMapGenerator    targetPackage="com.myBatis.mapper"  targetProject="SunWeb\src" />
+    <javaClientGenerator targetPackage="com.myBatis.dao" targetProject="SunWeb\src" type="XMLMAPPER" />
+<!--     <table schema="sun" tableName="catalogue_type"></table> -->
+<!--     <table schema="sun" tableName="catalogue"></table> -->
+ 	<table schema="sun" tableName="test"></table>
+  </context>
+</generatorConfiguration>
